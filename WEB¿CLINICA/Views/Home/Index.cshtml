@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<h1 class="display-4">Bienvenido</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    <p>¡Todo listo para empezar añadir registros!</p>
+}
+else
+{
+    <p>
+        En esta página podra manipular la información para guardar datos de tu clínica. <br />
+        Si no lo has realizado, por favor inicia sesión para acceder a más apartados
+    </p>
+}

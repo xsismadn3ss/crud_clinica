@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<CLINICA_CRUD.Models.Paciente>
+
+@{
+    ViewData["Title"] = "Pcientes";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Pacienes</h1>
+
+    <p>
+        <a class="boton new" asp-action="Create">Crear nuevo</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apelido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Edad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sexo)
+                </th>
+@*                 <th>
+                    @Html.DisplayNameFor(model => model.NombreResponsable)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApellidoResponsable)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TelefonoResponsable)
+                </th> *@
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apelido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Edad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sexo)
+                    </td>
+                    <td>
+@*                         @Html.DisplayFor(modelItem => item.NombreResponsable)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApellidoResponsable)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TelefonoResponsable)
+                    </td> *@
+                    <td>
+                        <a class="boton editar" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                        <a class="boton detalles" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                        <a class="boton eliminar" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <h4>Por favor inicie sesión para acceder a este apartado</h4>
+}

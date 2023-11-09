@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<CLINICA_CRUD.Models.RegistroMedico>
+
+@{
+    ViewData["Title"] = "Registro Médico";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Registro Médico</h1>
+
+    <p>
+        <a class="boton new" style="text:bold" asp-action="Create">Crear nuevo</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdPaciente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FKalergiaId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FKdiscapacidadId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FKenfermedadId)
+                </th>
+               @*  <th>
+                    @Html.DisplayNameFor(model => model.FKpaciente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FKalergia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FKdiscapacidad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FKenfermedad)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Tratamiento)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdPaciente)
+                    </td>
+                    @*@<td>
+                        @Html.DisplayFor(modelItem => item.IdDiscapacidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdAlergia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdEnfermedad)
+                    </td> *@
+                    @* <td>
+                        @Html.DisplayFor(modelItem => item.FKpaciente.Id)
+                    </td> *@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FKalergia.alergia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FKdiscapacidad.discapacidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FKenfermedad.enfermedad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tratamiento)
+                    </td>
+                    <td>
+                        <a class="boton editar" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                        <a class="boton detalles" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                        <a class="boton eliminar" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <h4>Por favor inicie sesión para acceder a este apartado</h4>
+}

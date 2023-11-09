@@ -1,0 +1,75 @@
+﻿@model CLINICA_CRUD.Models.RegistroMedico
+
+@{
+    ViewData["Title"] = "Registro Médico";
+}
+
+@* <h1>Eliminar</h1> *@
+
+<h3>¿Esta seguro de eliminar la siguiente informacion?</h3>
+<div>
+    @* <h4>Registro Médico</h4> *@
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdPaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdPaciente)
+        </dd>
+@*         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdDiscapacidad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdDiscapacidad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdAlergia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdAlergia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdEnfermedad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdEnfermedad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tratamiento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tratamiento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FKpaciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FKpaciente.Id) 
+        </dd>*@
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FKalergia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FKalergia.alergia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FKdiscapacidad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FKdiscapacidad.discapacidad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FKenfermedad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FKenfermedad.enfermedad)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Borrar" class="boton eliminar" style="margin:0px 10px 0px 0px" />
+        <a asp-action="Index">Volver al listado</a>
+    </form>
+</div>

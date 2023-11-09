@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<CLINICA_CRUD.Models.Cita>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+    <h1>Citas</h1>
+
+    <p>
+        <a class="boton new" asp-action="Create">Crear nueva cita</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdPaciente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Motivo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdPaciente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Motivo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        <a class="boton editar" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                        <a class="boton detalles" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                        <a class="boton eliminar" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <p>Por favor inicie sesión para acceder a este apartado</p>
+}
