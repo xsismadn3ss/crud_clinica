@@ -4,12 +4,15 @@
 @model IEnumerable<CLINICA_CRUD.Models.Paciente>
 
 @{
-    ViewData["Title"] = "Pcientes";
+    ViewData["Title"] = "Pacientes";
 }
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <h1>Pacientes</h1>
+    <h1 style="text-align:center;font-family:Century;font-size:30px;">Pacientes</h1>
+    <center> 
+        <img src="~/css/folders.png" style="width:80px;height:90px;"> <br> 
+    </center>
 
     <p>
         <a class="boton new" asp-action="Create">Crear nuevo</a>
@@ -90,6 +93,7 @@
 }
 else
 {
-    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <h1 class="mensaje">Usted no se ha identificado</h1>
     <h4>Por favor inicie sesión para acceder a este apartado</h4>
+    <img src="~/css/pagina bloqueda.png" style="width:500px;height:400px;">
 }

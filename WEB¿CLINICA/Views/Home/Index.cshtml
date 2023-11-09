@@ -8,19 +8,30 @@
 <h1 class="display-4">Bienvenido</h1>
 @if (SignInManager.IsSignedIn(User))
 {
-    <a>
-        <img class="hi" src="~/css/hi.webp" style="align-content:center; width:fit-content; height:auto">
-    </a>
-    <p>¡Todo listo para empezar añadir registros!</p>
+    <p style="text-align:center;font-family:Century;font-size:20px;">
+        <br>
+        ¡Todo listo para empezar añadir registros!
+    </p>
+    <center>
+        <img class="img2" src="~/css/clinica_inicio.png" style="width:600px;height:550px;">
+    </center>
 }
 else
 {
-    <p>
+    <center>
+        <img class="img3" src="~/css/hi.webp" style="width:90px;height:60px;">
+    </center>
+
+    <p style="text-align:center;font-family:Century;font-size:20px;">
+        <br>
         En esta página podra manipular la información para guardar datos de tu clínica. <br />
         Si no lo has realizado, por favor inicia sesión para acceder a más apartados.
     </p>
-    <a>
-        <img class="Writing" src="~/css/Yhinks.webp" style="align-content:center; width:fit-content; height:auto">
-    </a>
+
+    <center>
+        <img class="img4" src="~/css/iniciar sesion.png" style="width:500px;height:400px;">
+    </center>
+
+
 
 }
