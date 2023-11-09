@@ -1,19 +1,19 @@
 ﻿@model CLINICA_CRUD.Models.RegistroMedico
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar registro médico";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
-<h4>RegistroMedico</h4>
+<h4>Registro Medico</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+@*             <div class="form-group">
                 <label asp-for="IdPaciente" class="control-label"></label>
                 <input asp-for="IdPaciente" class="form-control" />
                 <span asp-validation-for="IdPaciente" class="text-danger"></span>
@@ -32,12 +32,7 @@
                 <label asp-for="IdEnfermedad" class="control-label"></label>
                 <input asp-for="IdEnfermedad" class="form-control" />
                 <span asp-validation-for="IdEnfermedad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tratamiento" class="control-label"></label>
-                <input asp-for="Tratamiento" class="form-control" />
-                <span asp-validation-for="Tratamiento" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
                 <label asp-for="FKpacienteId" class="control-label"></label>
                 <select asp-for="FKpacienteId" class="form-control" asp-items="ViewBag.FKpacienteId"></select>
@@ -59,7 +54,12 @@
                 <span asp-validation-for="FKenfermedadId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="Tratamiento" class="control-label"></label>
+                <input asp-for="Tratamiento" class="form-control" />
+                <span asp-validation-for="Tratamiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" style="margin:10px 0px 10px 10px 0px"/>
             </div>
         </form>
     </div>

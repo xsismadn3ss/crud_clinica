@@ -10,6 +10,7 @@ h1.mensaje{
 .boton {
     display: inline-block;
     padding: 10px 20px;
+    margin:2px 0px 5px 5px;
     color: #ffffff; /* Color del texto del botón */
     border-radius: 8px; /* Radio de borde para hacerlo redondeado */
     text-align: center;
