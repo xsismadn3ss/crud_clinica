@@ -25,6 +25,9 @@
                     @Html.DisplayNameFor(model => model.FKpacienteId)
                 </th>
                 <th>
+                    Paciente
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.FKalergiaId)
                 </th>
                 <th>
@@ -33,18 +36,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.FKenfermedadId)
                 </th>
-               @*  <th>
-                    @Html.DisplayNameFor(model => model.FKpaciente)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FKalergia)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FKdiscapacidad)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FKenfermedad)
-                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Tratamiento)
                 </th>
@@ -58,18 +49,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.FKpacienteId)
                     </td>
-                    @*@<td>
-                        @Html.DisplayFor(modelItem => item.IdDiscapacidad)
-                    </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdAlergia)
+                        @Html.DisplayFor(modelItem => item.FKpaciente.Nombre) @Html.DisplayFor(modelItem => item.FKpaciente.Apelido)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdEnfermedad)
-                    </td> *@
-                    @* <td>
-                        @Html.DisplayFor(modelItem => item.FKpaciente.Id)
-                    </td> *@
                     <td>
                         @Html.DisplayFor(modelItem => item.FKalergia.alergia)
                     </td>

@@ -1,71 +1,65 @@
 ﻿@model CLINICA_CRUD.Models.RegistroMedico
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Detalles</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Detalles</h1>
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPaciente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FKpacienteId)
-        </dd>
-        @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdDiscapacidad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdDiscapacidad)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdAlergia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdAlergia)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdEnfermedad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdEnfermedad)
-        </dd> *@
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tratamiento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tratamiento)
-        </dd>
-        @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FKpaciente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FKpaciente.Id)
-        </dd> *@
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FKalergia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FKalergia.alergia)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FKdiscapacidad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FKdiscapacidad.discapacidad)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FKenfermedad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FKenfermedad.enfermedad)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a class="boton editar" asp-action="Edit" asp-route-id="@Model?.Id">Editar</a>
-    <a asp-action="Index">Volver al listado</a>
-</div>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.FKpacienteId)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.FKpacienteId)
+            </dd>
+            <dt class = "col-sm-2">
+                Paciente
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.FKpaciente.Nombre) @Html.DisplayFor(model => model.FKpaciente.Apelido)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Tratamiento)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Tratamiento)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.FKalergia)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.FKalergia.alergia)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.FKdiscapacidad)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.FKdiscapacidad.discapacidad)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.FKenfermedad)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.FKenfermedad.enfermedad)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="boton editar" asp-action="Edit" asp-route-id="@Model?.Id">Editar</a>
+        <a asp-action="Index">Volver al listado</a>
+    </div>
+}
+else
+{
+    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <h4>Por favor inicie sesión para acceder a este apartado</h4>
+    <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
+}

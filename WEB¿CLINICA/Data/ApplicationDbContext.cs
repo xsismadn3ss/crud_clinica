@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CLINICA_CRUD.Models;
 
 namespace WEB_CLINICA.Data
 {
@@ -7,7 +8,7 @@ namespace WEB_CLINICA.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        { 
+        {
         }
         public DbSet<CLINICA_CRUD.Models.Alergia> Alergia { get; set; } = default!;
         public DbSet<CLINICA_CRUD.Models.Cita> Cita { get; set; } = default!;

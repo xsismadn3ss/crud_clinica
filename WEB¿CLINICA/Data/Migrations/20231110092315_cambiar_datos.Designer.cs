@@ -12,8 +12,8 @@ using WEB_CLINICA.Data;
 namespace WEB_CLINICA.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231109002907_create¿model")]
-    partial class createmodel
+    [Migration("20231110092315_cambiar_datos")]
+    partial class cambiar_datos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -155,18 +155,6 @@ namespace WEB_CLINICA.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("FKpacienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdAlergia")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdDiscapacidad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdEnfermedad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdPaciente")
                         .HasColumnType("int");
 
                     b.Property<string>("Tratamiento")

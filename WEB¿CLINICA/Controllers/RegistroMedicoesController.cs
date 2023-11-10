@@ -51,9 +51,9 @@ namespace WEB_CLINICA.Controllers
         // GET: RegistroMedicoes/Create
         public IActionResult Create()
         {
-            ViewData["FKalergiaId"] = new SelectList(_context.Alergia, "Id", "Id");
-            ViewData["FKdiscapacidadId"] = new SelectList(_context.Discapacidad, "Id", "Id");
-            ViewData["FKenfermedadId"] = new SelectList(_context.Enfermedad, "Id", "Id");
+            ViewData["FKalergiaId"] = new SelectList(_context.Alergia, "Id", "alergia");
+            ViewData["FKdiscapacidadId"] = new SelectList(_context.Discapacidad, "Id", "discapacidad");
+            ViewData["FKenfermedadId"] = new SelectList(_context.Enfermedad, "Id", "enfermedad");
             ViewData["FKpacienteId"] = new SelectList(_context.Paciente, "Id", "Id");
             return View();
         }
@@ -63,7 +63,7 @@ namespace WEB_CLINICA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Tratamiento,FKpacienteId,FKalergiaId,FKdiscapacidadId,FKenfermedadId")] RegistroMedico registroMedico)
+        public async Task<IActionResult> Create([Bind("Id,IdPaciente,IdDiscapacidad,IdAlergia,IdEnfermedad,Tratamiento,FKpacienteId,FKalergiaId,FKdiscapacidadId,FKenfermedadId")] RegistroMedico registroMedico)
         {
             if (ModelState.IsValid)
             {
@@ -91,9 +91,9 @@ namespace WEB_CLINICA.Controllers
             {
                 return NotFound();
             }
-            ViewData["FKalergiaId"] = new SelectList(_context.Alergia, "Id", "Id", registroMedico.FKalergiaId);
-            ViewData["FKdiscapacidadId"] = new SelectList(_context.Discapacidad, "Id", "Id", registroMedico.FKdiscapacidadId);
-            ViewData["FKenfermedadId"] = new SelectList(_context.Enfermedad, "Id", "Id", registroMedico.FKenfermedadId);
+            ViewData["FKalergiaId"] = new SelectList(_context.Alergia, "Id", "alergia", registroMedico.FKalergiaId);
+            ViewData["FKdiscapacidadId"] = new SelectList(_context.Discapacidad, "Id", "discapacidad", registroMedico.FKdiscapacidadId);
+            ViewData["FKenfermedadId"] = new SelectList(_context.Enfermedad, "Id", "enfermedad", registroMedico.FKenfermedadId);
             ViewData["FKpacienteId"] = new SelectList(_context.Paciente, "Id", "Id", registroMedico.FKpacienteId);
             return View(registroMedico);
         }
@@ -103,7 +103,7 @@ namespace WEB_CLINICA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Tratamiento,FKpacienteId,FKalergiaId,FKdiscapacidadId,FKenfermedadId")] RegistroMedico registroMedico)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdPaciente,IdDiscapacidad,IdAlergia,IdEnfermedad,Tratamiento,FKpacienteId,FKalergiaId,FKdiscapacidadId,FKenfermedadId")] RegistroMedico registroMedico)
         {
             if (id != registroMedico.Id)
             {

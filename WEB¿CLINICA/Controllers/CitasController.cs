@@ -22,9 +22,11 @@ namespace WEB_CLINICA.Controllers
         // GET: Citas
         public async Task<IActionResult> Index()
         {
-              return _context.Cita != null ? 
-                          View(await _context.Cita.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Cita'  is null.");
+            var applicationDbContext = _context.Cita.Include(r => r.IdPacienteNavigation);
+            return View(await applicationDbContext.ToListAsync());
+            //return _context.Cita != null ? 
+            //            View(await _context.Cita.ToListAsync()) :
+            //            Problem("Entity set 'ApplicationDbContext.Cita'  is null.");
         }
 
         // GET: Citas/Details/5
@@ -36,6 +38,7 @@ namespace WEB_CLINICA.Controllers
             }
 
             var cita = await _context.Cita
+                .Include(r => r.IdPacienteNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cita == null)
             {
@@ -48,6 +51,7 @@ namespace WEB_CLINICA.Controllers
         // GET: Citas/Create
         public IActionResult Create()
         {
+            ViewData["IdPacienteNavigation"] = new SelectList(_context.Paciente, "Id", "Id");
             return View();
         }
 
@@ -56,7 +60,7 @@ namespace WEB_CLINICA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdPaciente,Motivo,Fecha")] Cita cita)
+        public async Task<IActionResult> Create([Bind("Id,Motivo,Fecha, IdPacienteNavigationId")] Cita cita)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +68,10 @@ namespace WEB_CLINICA.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            //var pacientes = _context.Paciente.ToList();
+            //var nombresCompletos = pacientes.Select(p => $"{p.Nombre} {p.Apelido}"); 
+            //ViewData["IdPacienteNavigationId"] = new SelectList(_context.Paciente, "Id", "Id", nombresCompletos);
+            ViewData["IdPacienteNavigationId"] = new SelectList(_context.Paciente, "Id", "IdPacienteNavigationId", cita.IdPacienteNavigationId);
             return View(cita);
         }
 
@@ -80,6 +88,7 @@ namespace WEB_CLINICA.Controllers
             {
                 return NotFound();
             }
+            ViewData["IdPacienteNavigationId"] = new SelectList(_context.Paciente, "Id", "Id", cita.IdPacienteNavigationId);
             return View(cita);
         }
 
@@ -88,7 +97,7 @@ namespace WEB_CLINICA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdPaciente,Motivo,Fecha")] Cita cita)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Motivo,Fecha,IdPacienteNavigationId")] Cita cita)
         {
             if (id != cita.Id)
             {
@@ -115,6 +124,7 @@ namespace WEB_CLINICA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IdPacienteNavigationId"] = new SelectList(_context.Paciente, "Id", "IdPacienteNavigationId", cita.IdPacienteNavigationId);
             return View(cita);
         }
 
@@ -127,6 +137,7 @@ namespace WEB_CLINICA.Controllers
             }
 
             var cita = await _context.Cita
+                .Include(r => r.IdPacienteNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cita == null)
             {

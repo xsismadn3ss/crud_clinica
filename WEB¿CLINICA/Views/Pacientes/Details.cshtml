@@ -6,7 +6,6 @@
 @{
     ViewData["Title"] = "Detalles";
 }
-
 @if (SignInManager.IsSignedIn(User))
 {
     <h1>Detalles</h1>
@@ -15,7 +14,7 @@
         <hr />
         <dl class="row">
             <div>
-                <h2>Paciente</h2>
+              <h2>Paciente</h2>
             </div>
             <dt class = "col-sm-2">
                 @Html.DisplayNameFor(model => model.Nombre)
@@ -81,5 +80,3 @@ else
     <h4>Por favor inicie sesión para acceder a este apartado</h4>
     <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
 }
-
-

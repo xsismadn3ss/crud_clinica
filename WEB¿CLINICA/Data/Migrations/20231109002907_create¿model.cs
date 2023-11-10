@@ -135,7 +135,7 @@ namespace WEB_CLINICA.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Cita_IdPacienteNavigationId",
                 table: "Cita",
-                column: "FKpacienteId");
+                column: "IdPacienteNavigationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RegistroMedico_FKalergiaId",

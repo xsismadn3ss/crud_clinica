@@ -7,11 +7,10 @@
     ViewData["Title"] = "Pacientes";
 }
 
+<h1>Añadir</h1>
+
 @if (SignInManager.IsSignedIn(User))
 {
-    <h1>Añadir</h1>
-
-
     <hr />
     <div class="row">
         <div class="col-md-4">
@@ -67,10 +66,6 @@
             </form>
         </div>
     </div>
-
-    <div>
-        <a asp-action="Index">Volver</a>
-    </div>
 }
 else
 {
@@ -79,6 +74,9 @@ else
     <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
 }
 
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

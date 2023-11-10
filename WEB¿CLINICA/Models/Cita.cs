@@ -8,10 +8,13 @@ public partial class Cita
 {
     public int Id { get; set; }
 
+
     public string? Motivo { get; set; }
 
     public DateTime? Fecha { get; set; }
 
-    [Display(Name = "ID de paciente")]public int? FKpacienteId { get; set; }
-    public virtual Paciente? FKpaciente { get; set; }
+    [Display(Name = "ID")]
+    public int? IdPacienteNavigationId { get; set; }
+    [Display(Name = "ID")]
+    public virtual Paciente? IdPacienteNavigation { get; set; }
 }

@@ -7,10 +7,11 @@
     ViewData["Title"] = "Editar";
 }
 
-<h1>Editar</h1>
-
 @if (SignInManager.IsSignedIn(User))
 {
+    <h1>Editar</h1>
+
+
 
     <div class="row">
         <div class="col-md-4">
@@ -78,8 +79,6 @@ else
     <h4>Por favor inicie sesión para acceder a este apartado</h4>
     <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
 }
-
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

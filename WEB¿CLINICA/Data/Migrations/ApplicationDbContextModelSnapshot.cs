@@ -46,18 +46,18 @@ namespace WEB_CLINICA.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("FKpacienteId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("Fecha")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("IdPacienteNavigationId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Motivo")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FKpacienteId");
+                    b.HasIndex("IdPacienteNavigationId");
 
                     b.ToTable("Cita");
                 });
@@ -371,11 +371,11 @@ namespace WEB_CLINICA.Data.Migrations
 
             modelBuilder.Entity("CLINICA_CRUD.Models.Cita", b =>
                 {
-                    b.HasOne("CLINICA_CRUD.Models.Paciente", "FKpaciente")
+                    b.HasOne("CLINICA_CRUD.Models.Paciente", "IdPacienteNavigation")
                         .WithMany("Cita")
-                        .HasForeignKey("FKpacienteId");
+                        .HasForeignKey("IdPacienteNavigationId");
 
-                    b.Navigation("FKpaciente");
+                    b.Navigation("IdPacienteNavigation");
                 });
 
             modelBuilder.Entity("CLINICA_CRUD.Models.RegistroMedico", b =>
