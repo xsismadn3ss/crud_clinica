@@ -24,6 +24,9 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="background-color:#6BC6D8;">
                     <ul class="navbar-nav flex-grow-1">
                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
@@ -35,12 +38,10 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="RegistroMedicoes" asp-action="Index">Registros Médicos</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-
                         }
-                      
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
