@@ -9,12 +9,11 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <h1 style="text-align:center;font-family:Century;font-size:30px;">Registro Médico</h1>
+    <h1>Registro Médico</h1>
 
-    <center>
+@*     <center>
         <img src="~/css/folders.png" style="width:80px;height:90px;"> <br>
-    </center>
-
+    </center> *@
 
     <p>
         <a class="boton new" style="text:bold" asp-action="Create">Crear nuevo</a>
@@ -97,4 +96,5 @@ else
 {
     <h1 class="mensaje">Uste no se ha identificado</h1>
     <h4>Por favor inicie sesión para acceder a este apartado</h4>
+    <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
 }

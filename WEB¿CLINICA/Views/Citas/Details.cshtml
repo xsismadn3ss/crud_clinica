@@ -1,36 +1,48 @@
-﻿@model CLINICA_CRUD.Models.Cita
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model CLINICA_CRUD.Models.Cita
 
 @{
     ViewData["Title"] = "Detalles de cita";
 }
 
-<h1>Detalles</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Detalles</h1>
 
-<div>
-    <h4>Cita</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPaciente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdPaciente)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Motivo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Motivo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fecha)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a class="boton editar" style="margin:10px 10px 10px 0px" asp-action="Edit" asp-route-id="@Model?.Id">Editar</a>
-    <a asp-action="Index">Volver al listado</a>
-</div>
+    <div>
+        <h4>Cita</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.IdPaciente)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.IdPaciente)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Motivo)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Motivo)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Fecha)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Fecha)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="boton editar" style="margin:10px 10px 10px 0px" asp-action="Edit" asp-route-id="@Model?.Id">Editar</a>
+        <a asp-action="Index">Volver al listado</a>
+    </div>
+}
+else
+{
+    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <h4>Por favor inicie sesión para acceder a este apartado</h4>
+    <img src="~/css/pagina bloqueda.png" style="width:500px;height:400px;">
+}

@@ -5,9 +5,10 @@
     ViewData["Title"] = "Inicio";
 }
 
-<h1 class="display-4">Bienvenido</h1>
+
 @if (SignInManager.IsSignedIn(User))
 {
+    <h1 class="inicio">Bienvenido</h1>
     <center>
         <img class="img2" src="~/css/clinica_inicio.png" style="width:550px;height:550px;">
     </center>
@@ -18,7 +19,7 @@
 }
 else
 {
-
+    <h1 style="color:red; text-align:center;font-family:'Cambria Math'; font-size:60px;">Iniciar sesión</h1>
     <center>
         <img class="img4" src="~/css/iniciar sesion.png" style="width:500px;height:500px;">
     </center>
@@ -28,8 +29,4 @@ else
         En esta página podra manipular la información para guardar datos de tu clínica. <br />
         Si no lo has realizado, por favor inicia sesión para acceder a más apartados.
     </p>
-
-
-
-
 }

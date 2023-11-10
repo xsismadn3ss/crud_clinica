@@ -1,6 +1,11 @@
 ﻿.mensaje{
     
 }
+.inicio {
+    font-family: 'Cambria Math';
+    text-align: center;
+    font-size: 60px;
+}
 h1.mensaje{
     color : red;
     margin:0px;
