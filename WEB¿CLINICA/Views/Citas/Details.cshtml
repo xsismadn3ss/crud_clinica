@@ -16,10 +16,10 @@
         <hr />
         <dl class="row">
             <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.IdPaciente)
+                @Html.DisplayNameFor(model => model.FKpacienteId)
             </dt>
             <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.IdPaciente)
+                @Html.DisplayFor(model => model.FKpacienteId)
             </dd>
             <dt class = "col-sm-2">
                 @Html.DisplayNameFor(model => model.Motivo)
@@ -44,5 +44,5 @@ else
 {
     <h1 class="mensaje">Uste no se ha identificado</h1>
     <h4>Por favor inicie sesión para acceder a este apartado</h4>
-    <img src="~/css/pagina bloqueda.png" style="width:500px;height:400px;">
+    <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
 }

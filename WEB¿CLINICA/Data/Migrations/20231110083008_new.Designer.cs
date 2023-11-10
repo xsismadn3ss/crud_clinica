@@ -12,8 +12,8 @@ using WEB_CLINICA.Data;
 namespace WEB_CLINICA.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231109002907_create¿model")]
-    partial class createmodel
+    [Migration("20231110083008_new")]
+    partial class @new
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,14 +49,11 @@ namespace WEB_CLINICA.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("FKpacienteId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Fecha")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("FKpacienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FKpacienteId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Motivo")
                         .HasColumnType("nvarchar(max)");
@@ -152,18 +149,6 @@ namespace WEB_CLINICA.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("FKenfermedadId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FKpacienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdAlergia")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdDiscapacidad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdEnfermedad")
                         .HasColumnType("int");
 
                     b.Property<int?>("FKpacienteId")

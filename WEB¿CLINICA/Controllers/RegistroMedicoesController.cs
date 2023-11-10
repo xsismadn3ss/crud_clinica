@@ -63,7 +63,7 @@ namespace WEB_CLINICA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdPaciente,IdDiscapacidad,IdAlergia,IdEnfermedad,Tratamiento,FKpacienteId,FKalergiaId,FKdiscapacidadId,FKenfermedadId")] RegistroMedico registroMedico)
+        public async Task<IActionResult> Create([Bind("Id,Tratamiento,FKpacienteId,FKalergiaId,FKdiscapacidadId,FKenfermedadId")] RegistroMedico registroMedico)
         {
             if (ModelState.IsValid)
             {
@@ -103,7 +103,7 @@ namespace WEB_CLINICA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdPaciente,IdDiscapacidad,IdAlergia,IdEnfermedad,Tratamiento,FKpacienteId,FKalergiaId,FKdiscapacidadId,FKenfermedadId")] RegistroMedico registroMedico)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Tratamiento,FKpacienteId,FKalergiaId,FKdiscapacidadId,FKenfermedadId")] RegistroMedico registroMedico)
         {
             if (id != registroMedico.Id)
             {

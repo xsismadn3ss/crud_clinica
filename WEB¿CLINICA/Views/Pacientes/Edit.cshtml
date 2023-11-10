@@ -1,4 +1,7 @@
-﻿@model CLINICA_CRUD.Models.Paciente
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model CLINICA_CRUD.Models.Paciente
 
 @{
     ViewData["Title"] = "Editar";
@@ -6,67 +9,77 @@
 
 <h1>Editar</h1>
 
+@if (SignInManager.IsSignedIn(User))
+{
 
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <h2>Paciente</h2>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Apelido" class="control-label"></label>
+                    <input asp-for="Apelido" class="form-control" />
+                    <span asp-validation-for="Apelido" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Edad" class="control-label"></label>
+                    <input asp-for="Edad" class="form-control" />
+                    <span asp-validation-for="Edad" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sexo" class="control-label"></label>
+                    <input asp-for="Sexo" class="form-control" />
+                    <span asp-validation-for="Sexo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Telefono" class="control-label"></label>
+                    <input asp-for="Telefono" class="form-control" />
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <h2>Paciente</h2>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Apelido" class="control-label"></label>
-                <input asp-for="Apelido" class="form-control" />
-                <span asp-validation-for="Apelido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Edad" class="control-label"></label>
-                <input asp-for="Edad" class="form-control" />
-                <span asp-validation-for="Edad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sexo" class="control-label"></label>
-                <input asp-for="Sexo" class="form-control" />
-                <span asp-validation-for="Sexo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
-            </div>
-
-            <br />
-            <h2>Responsable</h2>
-            <div class="form-group">
-                <label asp-for="NombreResponsable" class="control-label"></label>
-                <input asp-for="NombreResponsable" class="form-control" />
-                <span asp-validation-for="NombreResponsable" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApellidoResponsable" class="control-label"></label>
-                <input asp-for="ApellidoResponsable" class="form-control" />
-                <span asp-validation-for="ApellidoResponsable" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TelefonoResponsable" class="control-label"></label>
-                <input asp-for="TelefonoResponsable" class="form-control" />
-                <span asp-validation-for="TelefonoResponsable" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" style="margin: 20px 0px 10px 0px" />
-            </div>
-        </form>
+                <br />
+                <h2>Responsable</h2>
+                <div class="form-group">
+                    <label asp-for="NombreResponsable" class="control-label"></label>
+                    <input asp-for="NombreResponsable" class="form-control" />
+                    <span asp-validation-for="NombreResponsable" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ApellidoResponsable" class="control-label"></label>
+                    <input asp-for="ApellidoResponsable" class="form-control" />
+                    <span asp-validation-for="ApellidoResponsable" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TelefonoResponsable" class="control-label"></label>
+                    <input asp-for="TelefonoResponsable" class="form-control" />
+                    <span asp-validation-for="TelefonoResponsable" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" style="margin: 20px 0px 10px 0px" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Volver al listado</a>
-</div>
+    <div>
+        <a asp-action="Index">Volver al listado</a>
+    </div>
+}
+else
+{
+    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <h4>Por favor inicie sesión para acceder a este apartado</h4>
+    <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
+}
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

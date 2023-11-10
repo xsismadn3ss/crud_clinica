@@ -46,21 +46,18 @@ namespace WEB_CLINICA.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("FKpacienteId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Fecha")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("IdPaciente")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdPacienteNavigationId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Motivo")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdPacienteNavigationId");
+                    b.HasIndex("FKpacienteId");
 
                     b.ToTable("Cita");
                 });
@@ -152,18 +149,6 @@ namespace WEB_CLINICA.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("FKpacienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdAlergia")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdDiscapacidad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdEnfermedad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdPaciente")
                         .HasColumnType("int");
 
                     b.Property<string>("Tratamiento")
@@ -386,11 +371,11 @@ namespace WEB_CLINICA.Data.Migrations
 
             modelBuilder.Entity("CLINICA_CRUD.Models.Cita", b =>
                 {
-                    b.HasOne("CLINICA_CRUD.Models.Paciente", "IdPacienteNavigation")
+                    b.HasOne("CLINICA_CRUD.Models.Paciente", "FKpaciente")
                         .WithMany("Cita")
-                        .HasForeignKey("IdPacienteNavigationId");
+                        .HasForeignKey("FKpacienteId");
 
-                    b.Navigation("IdPacienteNavigation");
+                    b.Navigation("FKpaciente");
                 });
 
             modelBuilder.Entity("CLINICA_CRUD.Models.RegistroMedico", b =>
