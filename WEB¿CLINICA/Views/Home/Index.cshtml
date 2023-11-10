@@ -8,18 +8,19 @@
 <h1 class="display-4">Bienvenido</h1>
 @if (SignInManager.IsSignedIn(User))
 {
-    <p style="text-align:center;font-family:Century;font-size:20px;">
-        <br>
-        ¡Todo listo para empezar añadir registros!
-    </p>
     <center>
         <img class="img2" src="~/css/clinica_inicio.png" style="width:600px;height:550px;">
     </center>
+    <p>
+        <br>
+        ¡Todo listo para empezar a añadir registros!
+    </p>
 }
 else
 {
+
     <center>
-        <img class="img3" src="~/css/hi.webp" style="width:90px;height:60px;">
+        <img class="img4" src="~/css/iniciar sesion.png" style="width:500px;height:450px;">
     </center>
 
     <p style="text-align:center;font-family:Century;font-size:20px;">
@@ -28,9 +29,6 @@ else
         Si no lo has realizado, por favor inicia sesión para acceder a más apartados.
     </p>
 
-    <center>
-        <img class="img4" src="~/css/iniciar sesion.png" style="width:500px;height:400px;">
-    </center>
 
 
 
