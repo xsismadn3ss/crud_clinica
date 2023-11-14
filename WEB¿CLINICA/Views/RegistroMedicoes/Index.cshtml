@@ -1,59 +1,76 @@
-﻿@model IEnumerable<CLINICA_CRUD.Models.RegistroMedico>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<CLINICA_CRUD.Models.RegistroMedico>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Registros médicos";
 }
 
-<h1>Index</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Registros Médicos</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Tratamiento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FKpaciente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FKalergia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FKdiscapacidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FKenfermedad)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tratamiento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FKpaciente.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FKalergia.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FKdiscapacidad.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FKenfermedad.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    <p>
+        <a asp-action="Create" class="boton new">Cear nuevo</a>
+        <strong><a style="margin-left:50%">Añadir: </a></strong>
+        <a class="boton new" asp-area="" asp-controller="Allergies" asp-action="Index">Alergia</a>
+        <a class="boton new" asp-area="" asp-controller="Disabilities" asp-action="Index">Discapacidad</a>
+        <a class="boton new" asp-area="" asp-controller="Diseases" asp-action="Index">Enfermedad</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FKpaciente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FKalergia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FKdiscapacidad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FKenfermedad)
+                <th>
+                    @Html.DisplayNameFor(model => model.Tratamiento)
+                </th>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FKpaciente.Nombre) @Html.DisplayFor(modelItem => item.FKpaciente.Apelido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FKalergia.alergia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FKdiscapacidad.discapacidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FKenfermedad.enfermedad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tratamiento)
+                    </td>
+                    <td>
+                        <a class="boton editar" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                        <a class="boton detalles" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                        <a class="boton eliminar" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-    </tbody>
-</table>
+else
+{
+    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <h4>Por favor inicie sesión para acceder a este apartado</h4>
+    <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
+}

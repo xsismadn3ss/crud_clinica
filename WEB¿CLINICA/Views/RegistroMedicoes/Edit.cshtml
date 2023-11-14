@@ -1,54 +1,73 @@
-﻿@model CLINICA_CRUD.Models.RegistroMedico
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model CLINICA_CRUD.Models.RegistroMedico
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Edit</h1>
 
-<h4>RegistroMedico</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Tratamiento" class="control-label"></label>
-                <input asp-for="Tratamiento" class="form-control" />
-                <span asp-validation-for="Tratamiento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FKpacienteId" class="control-label"></label>
-                <select asp-for="FKpacienteId" class="form-control" asp-items="ViewBag.FKpacienteId"></select>
-                <span asp-validation-for="FKpacienteId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FKalergiaId" class="control-label"></label>
-                <select asp-for="FKalergiaId" class="form-control" asp-items="ViewBag.FKalergiaId"></select>
-                <span asp-validation-for="FKalergiaId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FKdiscapacidadId" class="control-label"></label>
-                <select asp-for="FKdiscapacidadId" class="form-control" asp-items="ViewBag.FKdiscapacidadId"></select>
-                <span asp-validation-for="FKdiscapacidadId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FKenfermedadId" class="control-label"></label>
-                <select asp-for="FKenfermedadId" class="form-control" asp-items="ViewBag.FKenfermedadId"></select>
-                <span asp-validation-for="FKenfermedadId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <h4>RegistroMedico</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Tratamiento" class="control-label"></label>
+                    <input asp-for="Tratamiento" class="form-control" />
+                    <span asp-validation-for="Tratamiento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FKpacienteId" class="control-label"></label>
+                    <select asp-for="FKpacienteId" class="form-control" asp-items="ViewBag.FKpacienteId">
+                        <option style="color:gray" value="">seleccione una opcion</option>
+                    </select>
+                    <span asp-validation-for="FKpacienteId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FKalergiaId" class="control-label"></label>
+                    <select asp-for="FKalergiaId" class="form-control" asp-items="ViewBag.FKalergiaId">
+                        <option style="color:gray" value="">seleccione una opcion</option>
+                    </select>
+                    <span asp-validation-for="FKalergiaId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FKdiscapacidadId" class="control-label"></label>
+                    <select asp-for="FKdiscapacidadId" class="form-control" asp-items="ViewBag.FKdiscapacidadId">
+                        <option style="color:gray" value="">seleccione una opcion</option>
+                    </select>
+                    <span asp-validation-for="FKdiscapacidadId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FKenfermedadId" class="control-label"></label>
+                    <select asp-for="FKenfermedadId" class="form-control" asp-items="ViewBag.FKenfermedadId">
+                        <option style="color:gray" value="">seleccione una opcion</option>
+                    </select>
+                    <span asp-validation-for="FKenfermedadId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" style="margin-top:10px; margin-bottom:10px" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+    <div>
+        <a asp-action="Index">Volver al listado</a>
+    </div>
+}
+else
+{
+    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <h4>Por favor inicie sesión para acceder a este apartado</h4>
+    <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
+}
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

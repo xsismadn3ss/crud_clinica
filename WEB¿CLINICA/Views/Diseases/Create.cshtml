@@ -1,33 +1,41 @@
-﻿@model WEB_CLINICA.Models.Disease
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model WEB_CLINICA.Models.Disease
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Añadir";
 }
-
-<h1>Create</h1>
-
-<h4>Disease</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="enfermedad" class="control-label"></label>
-                <input asp-for="enfermedad" class="form-control" />
-                <span asp-validation-for="enfermedad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Añadir</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="enfermedad" class="control-label"></label>
+                    <input asp-for="enfermedad" class="form-control" />
+                    <span asp-validation-for="enfermedad" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Crear" class="btn btn-primary" style="margin-top:10px"/>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+    <div>
+        <a asp-action="Index">Volver al listado</a>
+    </div>
+}
+else
+{
+    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <h4>Por favor inicie sesión para acceder a este apartado</h4>
+    <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
+}
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WEB_CLINICA.Data;
 
 #nullable disable
 
-namespace WEB_CLINICA.Data.Migrations
+namespace WEB_CLINICA.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231109002907_create¿model")]
-    partial class createmodel
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,22 +21,6 @@ namespace WEB_CLINICA.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CLINICA_CRUD.Models.Alergia", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("alergia")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Alergia");
-                });
 
             modelBuilder.Entity("CLINICA_CRUD.Models.Cita", b =>
                 {
@@ -52,9 +33,6 @@ namespace WEB_CLINICA.Data.Migrations
                     b.Property<DateTime?>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IdPaciente")
-                        .HasColumnType("int");
-
                     b.Property<int?>("IdPacienteNavigationId")
                         .HasColumnType("int");
 
@@ -66,38 +44,6 @@ namespace WEB_CLINICA.Data.Migrations
                     b.HasIndex("IdPacienteNavigationId");
 
                     b.ToTable("Cita");
-                });
-
-            modelBuilder.Entity("CLINICA_CRUD.Models.Discapacidad", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("discapacidad")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Discapacidad");
-                });
-
-            modelBuilder.Entity("CLINICA_CRUD.Models.Enfermedad", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("enfermedad")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Enfermedad");
                 });
 
             modelBuilder.Entity("CLINICA_CRUD.Models.Paciente", b =>
@@ -155,18 +101,6 @@ namespace WEB_CLINICA.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("FKpacienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdAlergia")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdDiscapacidad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdEnfermedad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdPaciente")
                         .HasColumnType("int");
 
                     b.Property<string>("Tratamiento")
@@ -387,6 +321,54 @@ namespace WEB_CLINICA.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("WEB_CLINICA.Models.Allergy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("alergia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Allergy");
+                });
+
+            modelBuilder.Entity("WEB_CLINICA.Models.Disability", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("discapacidad")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Disability");
+                });
+
+            modelBuilder.Entity("WEB_CLINICA.Models.Disease", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("enfermedad")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Disease");
+                });
+
             modelBuilder.Entity("CLINICA_CRUD.Models.Cita", b =>
                 {
                     b.HasOne("CLINICA_CRUD.Models.Paciente", "IdPacienteNavigation")
@@ -398,15 +380,15 @@ namespace WEB_CLINICA.Data.Migrations
 
             modelBuilder.Entity("CLINICA_CRUD.Models.RegistroMedico", b =>
                 {
-                    b.HasOne("CLINICA_CRUD.Models.Alergia", "FKalergia")
+                    b.HasOne("WEB_CLINICA.Models.Allergy", "FKalergia")
                         .WithMany("RegistroMedicos")
                         .HasForeignKey("FKalergiaId");
 
-                    b.HasOne("CLINICA_CRUD.Models.Discapacidad", "FKdiscapacidad")
+                    b.HasOne("WEB_CLINICA.Models.Disability", "FKdiscapacidad")
                         .WithMany("RegistroMedicos")
                         .HasForeignKey("FKdiscapacidadId");
 
-                    b.HasOne("CLINICA_CRUD.Models.Enfermedad", "FKenfermedad")
+                    b.HasOne("WEB_CLINICA.Models.Disease", "FKenfermedad")
                         .WithMany("RegistroMedicos")
                         .HasForeignKey("FKenfermedadId");
 
@@ -474,25 +456,25 @@ namespace WEB_CLINICA.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CLINICA_CRUD.Models.Alergia", b =>
-                {
-                    b.Navigation("RegistroMedicos");
-                });
-
-            modelBuilder.Entity("CLINICA_CRUD.Models.Discapacidad", b =>
-                {
-                    b.Navigation("RegistroMedicos");
-                });
-
-            modelBuilder.Entity("CLINICA_CRUD.Models.Enfermedad", b =>
-                {
-                    b.Navigation("RegistroMedicos");
-                });
-
             modelBuilder.Entity("CLINICA_CRUD.Models.Paciente", b =>
                 {
                     b.Navigation("Cita");
 
+                    b.Navigation("RegistroMedicos");
+                });
+
+            modelBuilder.Entity("WEB_CLINICA.Models.Allergy", b =>
+                {
+                    b.Navigation("RegistroMedicos");
+                });
+
+            modelBuilder.Entity("WEB_CLINICA.Models.Disability", b =>
+                {
+                    b.Navigation("RegistroMedicos");
+                });
+
+            modelBuilder.Entity("WEB_CLINICA.Models.Disease", b =>
+                {
                     b.Navigation("RegistroMedicos");
                 });
 #pragma warning restore 612, 618

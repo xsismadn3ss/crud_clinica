@@ -20,13 +20,12 @@ public partial class RegistroMedico
 
     public string? Tratamiento { get; set; }
 
-    [Display(Name ="ID")]
-    public int? FKpacienteId { get; set; }
+    [Display(Name ="Paciente")] public int? FKpacienteId { get; set; }
     [Display(Name = "Alergia")] public int? FKalergiaId { get; set; }
     [Display(Name = "Discapacidad")] public int? FKdiscapacidadId { get; set; }
     [Display(Name = "Enfermedad")] public int? FKenfermedadId {  get; set; }
 
-     public virtual Paciente? FKpaciente { get; set; }
+    [Display(Name = "Paciente")] public virtual Paciente? FKpaciente { get; set; }
 
     [Display(Name = "Alergia")] public virtual Allergy? FKalergia { get; set; }
 
