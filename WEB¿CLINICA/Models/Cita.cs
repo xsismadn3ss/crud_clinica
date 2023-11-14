@@ -13,8 +13,8 @@ public partial class Cita
 
     public DateTime? Fecha { get; set; }
 
-    [Display(Name = "ID")]
+    [Display(Name = "Paciente")]
     public int? IdPacienteNavigationId { get; set; }
-    [Display(Name = "ID")]
+    [Display(Name = "Pacinente")]
     public virtual Paciente? IdPacienteNavigation { get; set; }
 }

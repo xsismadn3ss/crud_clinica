@@ -15,9 +15,13 @@
         <img src="~/css/folders.png" style="width:80px;height:90px;"> <br>
     </center> *@
 
-    <p>
+    <div>
         <a class="boton new" style="text:bold" asp-action="Create">Crear nuevo</a>
-    </p>
+        <strong><a style="margin-left:60%">Añadir:</a></strong>
+        <a class="boton new" asp-area="" asp-controller="Enfermedads" asp-action="Index">Enfermedad</a>
+        <a class="boton new" asp-area="" asp-controller="Discapacidads" asp-action="Index">Discapacidades</a>
+        <a class="boton new" asp-area="" asp-controller="Alergias" asp-action="Index">Alergias</a>
+    </div>
     <table class="table">
         <thead>
             <tr>

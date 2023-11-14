@@ -51,10 +51,16 @@ namespace WEB_CLINICA.Controllers
         // GET: RegistroMedicoes/Create
         public IActionResult Create()
         {
+            var pacientes = _context.Paciente.Select(p => new
+            {
+                Id = p.Id,
+                NombreCompleto = $"{p.Nombre} {p.Apelido}"
+            }).ToList();
+
+            ViewData["FKPacienteId"] = new SelectList(pacientes, "Id", "NombreCompleto");
             ViewData["FKalergiaId"] = new SelectList(_context.Alergia, "Id", "alergia");
             ViewData["FKdiscapacidadId"] = new SelectList(_context.Discapacidad, "Id", "discapacidad");
             ViewData["FKenfermedadId"] = new SelectList(_context.Enfermedad, "Id", "enfermedad");
-            ViewData["FKpacienteId"] = new SelectList(_context.Paciente, "Id", "Id");
             return View();
         }
 
@@ -71,10 +77,16 @@ namespace WEB_CLINICA.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            var pacientes = _context.Paciente.Select(p => new
+            {
+                Id = p.Id,
+                NombreCompleto = $"{p.Nombre} {p.Apelido}"
+            }).ToList();
+
+            ViewData["FKPacienteId"] = new SelectList(pacientes, "Id", "NombreCompleto", registroMedico.FKpacienteId);
             ViewData["FKalergiaId"] = new SelectList(_context.Alergia, "Id", "Id", registroMedico.FKalergiaId);
             ViewData["FKdiscapacidadId"] = new SelectList(_context.Discapacidad, "Id", "Id", registroMedico.FKdiscapacidadId);
             ViewData["FKenfermedadId"] = new SelectList(_context.Enfermedad, "Id", "Id", registroMedico.FKenfermedadId);
-            ViewData["FKpacienteId"] = new SelectList(_context.Paciente, "Id", "Id", registroMedico.FKpacienteId);
             return View(registroMedico);
         }
 
@@ -91,10 +103,16 @@ namespace WEB_CLINICA.Controllers
             {
                 return NotFound();
             }
+            var pacientes = _context.Paciente.Select(p => new
+            {
+                Id = p.Id,
+                NombreCompleto = $"{p.Nombre} {p.Apelido}"
+            }).ToList();
+
+            ViewData["FKPacienteId"] = new SelectList(pacientes, "Id", "NombreCompleto", registroMedico.FKpacienteId);
             ViewData["FKalergiaId"] = new SelectList(_context.Alergia, "Id", "alergia", registroMedico.FKalergiaId);
             ViewData["FKdiscapacidadId"] = new SelectList(_context.Discapacidad, "Id", "discapacidad", registroMedico.FKdiscapacidadId);
             ViewData["FKenfermedadId"] = new SelectList(_context.Enfermedad, "Id", "enfermedad", registroMedico.FKenfermedadId);
-            ViewData["FKpacienteId"] = new SelectList(_context.Paciente, "Id", "Id", registroMedico.FKpacienteId);
             return View(registroMedico);
         }
 
@@ -130,10 +148,16 @@ namespace WEB_CLINICA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            var pacientes = _context.Paciente.Select(p => new
+            {
+                Id = p.Id,
+                NombreCompleto = $"{p.Nombre} {p.Apelido}"
+            }).ToList();
+
+            ViewData["FKPacienteId"] = new SelectList(pacientes, "Id", "NombreCompleto", registroMedico.FKpacienteId);
             ViewData["FKalergiaId"] = new SelectList(_context.Alergia, "Id", "Id", registroMedico.FKalergiaId);
             ViewData["FKdiscapacidadId"] = new SelectList(_context.Discapacidad, "Id", "Id", registroMedico.FKdiscapacidadId);
             ViewData["FKenfermedadId"] = new SelectList(_context.Enfermedad, "Id", "Id", registroMedico.FKenfermedadId);
-            ViewData["FKpacienteId"] = new SelectList(_context.Paciente, "Id", "Id", registroMedico.FKpacienteId);
             return View(registroMedico);
         }
 
