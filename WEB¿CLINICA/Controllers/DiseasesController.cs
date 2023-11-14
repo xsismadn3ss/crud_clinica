@@ -5,92 +5,92 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CLINICA_CRUD.Models;
 using WEB_CLINICA.Data;
+using WEB_CLINICA.Models;
 
 namespace WEB_CLINICA.Controllers
 {
-    public class AlergiasController : Controller
+    public class DiseasesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public AlergiasController(ApplicationDbContext context)
+        public DiseasesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Alergias
+        // GET: Diseases
         public async Task<IActionResult> Index()
         {
-              return _context.Alergia != null ? 
-                          View(await _context.Alergia.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Alergia'  is null.");
+              return _context.Disease != null ? 
+                          View(await _context.Disease.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Disease'  is null.");
         }
 
-        // GET: Alergias/Details/5
+        // GET: Diseases/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Alergia == null)
+            if (id == null || _context.Disease == null)
             {
                 return NotFound();
             }
 
-            var alergia = await _context.Alergia
+            var disease = await _context.Disease
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (alergia == null)
+            if (disease == null)
             {
                 return NotFound();
             }
 
-            return View(alergia);
+            return View(disease);
         }
 
-        // GET: Alergias/Create
+        // GET: Diseases/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Alergias/Create
+        // POST: Diseases/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,alergia")] Alergia alergia)
+        public async Task<IActionResult> Create([Bind("Id,enfermedad")] Disease disease)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(alergia);
+                _context.Add(disease);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(alergia);
+            return View(disease);
         }
 
-        // GET: Alergias/Edit/5
+        // GET: Diseases/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Alergia == null)
+            if (id == null || _context.Disease == null)
             {
                 return NotFound();
             }
 
-            var alergia = await _context.Alergia.FindAsync(id);
-            if (alergia == null)
+            var disease = await _context.Disease.FindAsync(id);
+            if (disease == null)
             {
                 return NotFound();
             }
-            return View(alergia);
+            return View(disease);
         }
 
-        // POST: Alergias/Edit/5
+        // POST: Diseases/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,alergia")] Alergia alergia)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,enfermedad")] Disease disease)
         {
-            if (id != alergia.Id)
+            if (id != disease.Id)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace WEB_CLINICA.Controllers
             {
                 try
                 {
-                    _context.Update(alergia);
+                    _context.Update(disease);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AlergiaExists(alergia.Id))
+                    if (!DiseaseExists(disease.Id))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace WEB_CLINICA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(alergia);
+            return View(disease);
         }
 
-        // GET: Alergias/Delete/5
+        // GET: Diseases/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Alergia == null)
+            if (id == null || _context.Disease == null)
             {
                 return NotFound();
             }
 
-            var alergia = await _context.Alergia
+            var disease = await _context.Disease
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (alergia == null)
+            if (disease == null)
             {
                 return NotFound();
             }
 
-            return View(alergia);
+            return View(disease);
         }
 
-        // POST: Alergias/Delete/5
+        // POST: Diseases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Alergia == null)
+            if (_context.Disease == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Alergia'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Disease'  is null.");
             }
-            var alergia = await _context.Alergia.FindAsync(id);
-            if (alergia != null)
+            var disease = await _context.Disease.FindAsync(id);
+            if (disease != null)
             {
-                _context.Alergia.Remove(alergia);
+                _context.Disease.Remove(disease);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AlergiaExists(int id)
+        private bool DiseaseExists(int id)
         {
-          return (_context.Alergia?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Disease?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

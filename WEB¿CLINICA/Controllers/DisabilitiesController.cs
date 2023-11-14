@@ -5,92 +5,92 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CLINICA_CRUD.Models;
 using WEB_CLINICA.Data;
+using WEB_CLINICA.Models;
 
 namespace WEB_CLINICA.Controllers
 {
-    public class EnfermedadsController : Controller
+    public class DisabilitiesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public EnfermedadsController(ApplicationDbContext context)
+        public DisabilitiesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Enfermedads
+        // GET: Disabilities
         public async Task<IActionResult> Index()
         {
-              return _context.Enfermedad != null ? 
-                          View(await _context.Enfermedad.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Enfermedad'  is null.");
+              return _context.Disability != null ? 
+                          View(await _context.Disability.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Disability'  is null.");
         }
 
-        // GET: Enfermedads/Details/5
+        // GET: Disabilities/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Enfermedad == null)
+            if (id == null || _context.Disability == null)
             {
                 return NotFound();
             }
 
-            var enfermedad = await _context.Enfermedad
+            var disability = await _context.Disability
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (enfermedad == null)
+            if (disability == null)
             {
                 return NotFound();
             }
 
-            return View(enfermedad);
+            return View(disability);
         }
 
-        // GET: Enfermedads/Create
+        // GET: Disabilities/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Enfermedads/Create
+        // POST: Disabilities/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,enfermedad")] Enfermedad enfermedad)
+        public async Task<IActionResult> Create([Bind("Id,discapacidad")] Disability disability)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(enfermedad);
+                _context.Add(disability);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(enfermedad);
+            return View(disability);
         }
 
-        // GET: Enfermedads/Edit/5
+        // GET: Disabilities/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Enfermedad == null)
+            if (id == null || _context.Disability == null)
             {
                 return NotFound();
             }
 
-            var enfermedad = await _context.Enfermedad.FindAsync(id);
-            if (enfermedad == null)
+            var disability = await _context.Disability.FindAsync(id);
+            if (disability == null)
             {
                 return NotFound();
             }
-            return View(enfermedad);
+            return View(disability);
         }
 
-        // POST: Enfermedads/Edit/5
+        // POST: Disabilities/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,enfermedad")] Enfermedad enfermedad)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,discapacidad")] Disability disability)
         {
-            if (id != enfermedad.Id)
+            if (id != disability.Id)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace WEB_CLINICA.Controllers
             {
                 try
                 {
-                    _context.Update(enfermedad);
+                    _context.Update(disability);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EnfermedadExists(enfermedad.Id))
+                    if (!DisabilityExists(disability.Id))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace WEB_CLINICA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(enfermedad);
+            return View(disability);
         }
 
-        // GET: Enfermedads/Delete/5
+        // GET: Disabilities/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Enfermedad == null)
+            if (id == null || _context.Disability == null)
             {
                 return NotFound();
             }
 
-            var enfermedad = await _context.Enfermedad
+            var disability = await _context.Disability
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (enfermedad == null)
+            if (disability == null)
             {
                 return NotFound();
             }
 
-            return View(enfermedad);
+            return View(disability);
         }
 
-        // POST: Enfermedads/Delete/5
+        // POST: Disabilities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Enfermedad == null)
+            if (_context.Disability == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Enfermedad'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Disability'  is null.");
             }
-            var enfermedad = await _context.Enfermedad.FindAsync(id);
-            if (enfermedad != null)
+            var disability = await _context.Disability.FindAsync(id);
+            if (disability != null)
             {
-                _context.Enfermedad.Remove(enfermedad);
+                _context.Disability.Remove(disability);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EnfermedadExists(int id)
+        private bool DisabilityExists(int id)
         {
-          return (_context.Enfermedad?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Disability?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,86 +1,59 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-@model IEnumerable<CLINICA_CRUD.Models.RegistroMedico>
+﻿@model IEnumerable<CLINICA_CRUD.Models.RegistroMedico>
 
 @{
-    ViewData["Title"] = "Registro Médico";
+    ViewData["Title"] = "Index";
 }
 
-@if (SignInManager.IsSignedIn(User))
-{
-    <h1>Registro Médico</h1>
+<h1>Index</h1>
 
-@*     <center>
-        <img src="~/css/folders.png" style="width:80px;height:90px;"> <br>
-    </center> *@
-
-    <div>
-        <a class="boton new" style="text:bold" asp-action="Create">Crear nuevo</a>
-        <strong><a style="margin-left:60%">Añadir:</a></strong>
-        <a class="boton new" asp-area="" asp-controller="Enfermedads" asp-action="Index">Enfermedad</a>
-        <a class="boton new" asp-area="" asp-controller="Discapacidads" asp-action="Index">Discapacidades</a>
-        <a class="boton new" asp-area="" asp-controller="Alergias" asp-action="Index">Alergias</a>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FKpacienteId)
-                </th>
-                <th>
-                    Paciente
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FKalergiaId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FKdiscapacidadId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FKenfermedadId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tratamiento)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FKpacienteId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FKpaciente.Nombre) @Html.DisplayFor(modelItem => item.FKpaciente.Apelido)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FKalergia.alergia)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FKdiscapacidad.discapacidad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FKenfermedad.enfermedad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tratamiento)
-                    </td>
-                    <td>
-                        <a class="boton editar" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
-                        <a class="boton detalles" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
-                        <a class="boton eliminar" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tratamiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FKpaciente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FKalergia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FKdiscapacidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FKenfermedad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tratamiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FKpaciente.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FKalergia.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FKdiscapacidad.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FKenfermedad.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
 }
-else
-{
-    <h1 class="mensaje">Uste no se ha identificado</h1>
-    <h4>Por favor inicie sesión para acceder a este apartado</h4>
-    <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
-}
+    </tbody>
+</table>

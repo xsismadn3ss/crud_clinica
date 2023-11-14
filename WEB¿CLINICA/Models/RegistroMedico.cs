@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using WEB_CLINICA.Models;
 
 namespace CLINICA_CRUD.Models;
 
@@ -27,10 +28,10 @@ public partial class RegistroMedico
 
      public virtual Paciente? FKpaciente { get; set; }
 
-    [Display(Name = "Alergia")] public virtual Alergia? FKalergia { get; set; }
+    [Display(Name = "Alergia")] public virtual Allergy? FKalergia { get; set; }
 
-    [Display(Name = "Discapacidad")] public virtual Discapacidad? FKdiscapacidad { get; set; }
+    [Display(Name = "Discapacidad")] public virtual Disability? FKdiscapacidad { get; set; }
 
-    [Display(Name = "Enfermedad")] public virtual Enfermedad? FKenfermedad { get; set; }
+    [Display(Name = "Enfermedad")] public virtual Disease? FKenfermedad { get; set; }
 
 }
