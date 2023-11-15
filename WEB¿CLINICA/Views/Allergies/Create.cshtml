@@ -1,33 +1,43 @@
-﻿@model WEB_CLINICA.Models.Allergy
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model WEB_CLINICA.Models.Allergy
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Añadir";
 }
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Añadir</h1>
 
-<h1>Create</h1>
-
-<h4>Allergy</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="alergia" class="control-label"></label>
-                <input asp-for="alergia" class="form-control" />
-                <span asp-validation-for="alergia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <h4>Alergia</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="alergia" class="control-label"></label>
+                    <input asp-for="alergia" class="form-control" />
+                    <span asp-validation-for="alergia" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Crear" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+    <div>
+        <a asp-action="Index">Volver al listado</a>
+    </div>
+}
+else
+{
+    <h1 class="mensaje">Uste no se ha identificado</h1>
+    <h4>Por favor inicie sesión para acceder a este apartado</h4>
+    <img src="~/css/pagina bloqueda.png" style="width:400px;height:400px;">
+}
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

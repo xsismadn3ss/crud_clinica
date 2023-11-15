@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using WEB_CLINICA.Models;
 
 namespace CLINICA_CRUD.Models;
 
